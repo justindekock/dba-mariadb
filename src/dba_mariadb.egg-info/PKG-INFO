@@ -19,3 +19,7 @@ Requires-Dist: tzdata
 
 THIS PYTHON PACKAGE PROVIDES FUNCTIONALITY FOR INTERACTING WITH MARIADB DATABASE
 
+# TODO - only works when .env in other directories, i want it to work without having the database .env in the app
+
+# TODO - MORE ROBUST INSERT FUNCTION. NEED TO BE ABLE TO PASS ANY NUMBER OF FIELDS WITH ANY NUMBER OF VALUES. NO INDIVIDUAL TABLE FUNCTIONS
+
