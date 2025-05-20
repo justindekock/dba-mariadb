@@ -1,0 +1,9 @@
+README.md
+pyproject.toml
+src/dba_mariadb.egg-info/PKG-INFO
+src/dba_mariadb.egg-info/SOURCES.txt
+src/dba_mariadb.egg-info/dependency_links.txt
+src/dba_mariadb.egg-info/requires.txt
+src/dba_mariadb.egg-info/top_level.txt
+src/dbamdb/__init__.py
+src/dbamdb/conn.py

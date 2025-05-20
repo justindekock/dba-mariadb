@@ -1,0 +1,21 @@
+Metadata-Version: 2.4
+Name: dba-mariadb
+Version: 0.0.0
+Summary: Interact with Mariadb server
+Author-email: Justin DeKock <jdekock17@gmail.com>
+Keywords: Ultralytics,Template
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: dotenv
+Requires-Dist: mariadb
+Requires-Dist: numpy
+Requires-Dist: packaging
+Requires-Dist: pandas
+Requires-Dist: python-dateutil
+Requires-Dist: python-dotenv
+Requires-Dist: pytz
+Requires-Dist: six
+Requires-Dist: tzdata
+
+THIS PYTHON PACKAGE PROVIDES FUNCTIONALITY FOR INTERACTING WITH MARIADB DATABASE
+

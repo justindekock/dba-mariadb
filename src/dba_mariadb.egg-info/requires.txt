@@ -1,0 +1,10 @@
+dotenv
+mariadb
+numpy
+packaging
+pandas
+python-dateutil
+python-dotenv
+pytz
+six
+tzdata

@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=70.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dba-mariadb"
+dynamic = ["version"]
+description = "Interact with Mariadb server"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { file = "LICENSE" }
+keywords = ["Ultralytics", "Template"]  # Optional
+authors = [
+    { name = "Justin DeKock", email = "jdekock17@gmail.com" }
+]
+
+dependencies = [
+    "dotenv",
+    "mariadb",
+    "numpy",
+    "packaging",
+    "pandas",
+    "python-dateutil",
+    "python-dotenv",
+    "pytz",
+    "six",
+    "tzdata",
+]
