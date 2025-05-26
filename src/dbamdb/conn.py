@@ -24,6 +24,7 @@ class DBConn:
         self.database = environ['PROD_DB' if env=='prod' else 'DEV_DB']
         self.user = environ['DB_USER' if env=='prod' else 'DEV_USER']
         self.passw = environ['PASS' if env=='prod' else 'DEV_PASS']
+        self.logpath = None
         self.connection = None
         self.conn_error = None
         
@@ -39,6 +40,31 @@ class DBConn:
             print(e)
         
         return self.connection
+    
+    def delete_temp_player(self):
+        q = 'delete from player_temp'
+        
+        before = self.select_count('player_temp')
+        # print(f'Rows before deleting: {before}')
+        
+        conn = self.connect()
+        conn.begin()
+        cur = conn.cursor()
+        
+        try:
+            cur.execute(q)
+            conn.commit()
+            
+        except mariadb.Error as e:
+            print(e)
+            return e
+        
+        conn.close()
+        
+        after = self.select_count('player_temp')
+        # print(f'Rows after deleting: {after}')
+        
+        return [f'Rows before deleting: {before}', f'Rows after deleting: {after}']
             
     def insert(self, table, fields, values):
         valid_table = table # TODO - add the validation back iN
@@ -59,21 +85,23 @@ class DBConn:
                 conn.begin()
                 cur = conn.cursor()
                 
-                print(f'Rows before insert: {self.select_count(valid_table)}')
+                before = self.select_count(valid_table)
                 
                 cur.executemany(q, values)
-                # print(q)
-                # print(values)
                 conn.commit()   
                 
-                print(f'Rows after insert: {self.select_count(valid_table)}')
+                after = self.select_count(valid_table)
                 conn.close()
+                
+                
+                return([f'Rows before insert: {before}', f'Rows after insert: {after}'])
                     
             except mariadb.Error as e:
                 print(e)
+                return e
                 
         else: 
-            print(self.conn_error)
+            return self.conn_error
 
             
     
