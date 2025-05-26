@@ -21,7 +21,7 @@ class DBConn:
         #load_dotenv()
         self.host = environ['TS_DOMAIN'] 
         self.port = int(environ['PROD_PORT' if env=='prod' else 'DEV_PORT'])
-        self.database = 'test'#environ['PROD_DB' if env=='prod' else 'DEV_DB']
+        self.database = environ['PROD_DB' if env=='prod' else 'DEV_DB']
         self.user = environ['DB_USER' if env=='prod' else 'DEV_USER']
         self.passw = environ['PASS' if env=='prod' else 'DEV_PASS']
         self.connection = None
@@ -41,7 +41,7 @@ class DBConn:
         return self.connection
             
     def insert(self, table, fields, values):
-        valid_table = table
+        valid_table = table # TODO - add the validation back iN
         valid_fields = self.fields_str(fields)
         if len(values[0]) == len(fields):
                 val_ph = '?'
@@ -67,6 +67,7 @@ class DBConn:
                 conn.commit()   
                 
                 print(f'Rows after insert: {self.select_count(valid_table)}')
+                conn.close()
                     
             except mariadb.Error as e:
                 print(e)
@@ -143,7 +144,7 @@ class DBConn:
             raise Exception(valid_table)
         
     # select season, players, teams, players/teams together    
-    def select(self, query, fetch_type='fetchone', table='team') -> pd.DataFrame:    
+    def select(self, query, fetch_type='fetchone') -> pd.DataFrame:    
         queries = {
             'season': 'select * from season',
             'player': 'select * from player',
@@ -181,6 +182,7 @@ class DBConn:
         if valid_table == table:
             cur.execute(f'select count(*) from {valid_table}')
             return cur.fetchone()[0]
+        conn.close()
         
 if __name__ == '__main__':
     main()

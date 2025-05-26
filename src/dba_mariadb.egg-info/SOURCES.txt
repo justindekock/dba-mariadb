@@ -8,4 +8,3 @@ src/dba_mariadb.egg-info/top_level.txt
 src/dbamdb/__init__.py
 src/dbamdb/conn.py
 src/dbamdb/error.py
-src/dbamdb/insert.py
